@@ -7,4 +7,5 @@
 * [Arrays](arrays/README.md)
   * [Searching](arrays/searching.md)
   * [LeetCode](arrays/leetcode.md)
+  * [Set 1](arrays/set-1.md)
 * [Matrix](matrix.md)
