@@ -8,3 +8,5 @@
   * [searching](arrays/searching.md)
   * [set 1](arrays/set-1.md)
 * [Matrix](matrix.md)
+* [Strings](strings.md)
+* [LinkedList](linkedlist.md)
