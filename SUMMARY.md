@@ -5,5 +5,6 @@
 * [Recursion](recursion.md)
 * [Bit Manipulation](bit-manipulation.md)
 * [Arrays](arrays/README.md)
+  * [Searching](arrays/searching.md)
   * [LeetCode](arrays/leetcode.md)
 * [Matrix](matrix.md)
