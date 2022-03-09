@@ -11,3 +11,4 @@
 * [Matrix](matrix.md)
 * [Strings](strings.md)
 * [LinkedList](linkedlist.md)
+* [Binary Search Tree](binary-search-tree.md)
