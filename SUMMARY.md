@@ -6,3 +6,4 @@
 * [Bit Manipulation](bit-manipulation.md)
 * [Arrays](arrays/README.md)
   * [LeetCode](arrays/leetcode.md)
+* [Matrix](matrix.md)

@@ -4,3 +4,4 @@
 * [Recursion](recursion.md)
 * [Bit Manipulation](bit-manipulation.md)
 * [Arrays](arrays/)
+* [Matrix](matrix.md)
