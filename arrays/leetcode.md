@@ -1,4 +1,4 @@
-# LeetCode
+# Set 2
 
 ### Contains Duplicate
 
