@@ -1,3 +1,3 @@
 # Arrays
 
-### [LeetCode](leetcode.md)
+### [LeetCode](set-2.md)

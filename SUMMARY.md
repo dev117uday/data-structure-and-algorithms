@@ -6,7 +6,7 @@
 * [Bit Manipulation](bit-manipulation.md)
 * [Arrays](arrays/README.md)
   * [Searching](arrays/searching.md)
-  * [LeetCode](arrays/leetcode.md)
+  * [Set 2](arrays/set-2.md)
   * [Set 1](arrays/set-1.md)
 * [Sorting](sorting.md)
 * [Matrix](matrix.md)
