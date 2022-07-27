@@ -32,7 +32,7 @@ Shift 'n-1' disks from 'B' to 'C'.
 Image illustration for 3 disks :
 ```
 
-![](.gitbook/assets/image.png)
+![](<.gitbook/assets/image (1).png>)
 
 ```
 Output : Disk 1 moved from A to B
