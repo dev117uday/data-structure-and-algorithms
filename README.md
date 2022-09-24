@@ -1,4 +1,16 @@
-# Data Structures and Algorithms
+---
+description: only thing that matters in OA
+---
+
+# Data Structures and Algo
+
+### Notations
+
+* Big O : upper bound of algorithm, worst case
+* Omega : lower bound of algorithm, best case
+* Theta : Average bound of algorithm
+
+### Topics
 
 * [Math & Logic](math-and-logic.md)
 * [Recursion](recursion.md)

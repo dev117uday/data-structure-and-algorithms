@@ -4,6 +4,64 @@ description: Just like inception
 
 # Recursion
 
+### Tail recursion
+
+The tail recursion is better than non-tail recursion. As there is no task left after the recursive call, it will be easier for the compiler to optimize the code. When one function is called, its address is stored inside the stack. So if it is tail recursion, then storing addresses into stack is not needed.
+
+We can use factorial using recursion, but the function is not tail recursive. The value of fact(n-1) is used inside the fact(n).
+
+```java
+long fact(int n){
+   if(n <= 1)
+      return 1;
+   n * fact(n-1);
+}
+```
+
+We can make it tail recursive, by adding some other parameters. This is like below −
+
+```java
+long fact(long n, long a){
+   if(n == 0)
+      return a;
+   return fact(n-1, a*n);
+}
+```
+
+When last statement is recursion, it is tail recursion, which is optimized by compiler using goto statements.
+
+### 1 to N and N to 1
+
+```java
+class App {
+    public static void main(String[] args) {
+        System.out.println("--- start ---");
+        
+        print1ToN(9);
+        System.out.println();
+        printNTo1(9);
+        
+        System.out.println("\n--- end ---");
+    }
+
+    private static void printNTo1(int i) {
+        if(i==0) {
+            return;
+        }
+        System.out.print(i+"|");
+        printNTo1(i-1);
+    }
+
+    private static void print1ToN(int i) {
+        if(i==0) {
+            return;
+        }
+        print1ToN(i-1);
+        System.out.print(i+"|");
+    }
+}
+```
+
 ### Tower of Hanoi
 
 **Important**
@@ -29,10 +87,11 @@ Shift 'n-1' disks from 'A' to 'B'.
 Shift last disk from 'A' to 'C'.
 Shift 'n-1' disks from 'B' to 'C'.
 
-Image illustration for 3 disks :
+Image illustration for 3 disks 
+
 ```
 
-![](<.gitbook/assets/image (1).png>)
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 Output : Disk 1 moved from A to B
@@ -85,27 +144,7 @@ class Program
 {% endtab %}
 {% endtabs %}
 
-### Print 1 to N without Loop
-
-```java
-class Solution {
-	static public void printWithoutLoop(int n) {
-
-		if (n == 0) {
-			return;
-		}
-
-		printWithoutLoop(n - 1);
-		System.out.println(n);
-	}
-
-	public static void main(String[] args) {
-		printWithoutLoop(5);
-	}
-}
-```
-
-### Fibonacci using Recursion
+### Fibonacci
 
 ```java
 class Solution {
@@ -121,7 +160,7 @@ class Solution {
 }
 ```
 
-### Count Total Digits in a Number
+### Count Total Digits
 
 ```java
 class Solution {
@@ -140,7 +179,7 @@ class Solution {
 }
 ```
 
-### Sum of Digits of a Number
+### Sum of Digits
 
 ```java
 class Solution {
@@ -160,48 +199,37 @@ class Solution {
 }
 ```
 
-### To check the given string is palindrome or not
+### Is string palindrome
 
 {% tabs %}
 {% tab title="Java" %}
 ```java
-class Solution {
+class App {
+    public static void main(String[] args) {
+        System.out.println(palindrome("aabaa"));
+        System.out.println(palindrome("abc"));
+    }
 
-	static boolean isPalRec(String str, int s, int e) {
-		// If there is only one character
-		if (s == e)
-			return true;
+    private static boolean palindrome(String str) {
+        if(str.length() == 0) return true;
+        return checkPalindrome(str, 0, str.length() - 1);
+    }
 
-		// If first and last characters do not match
-		if ((str.charAt(s)) != (str.charAt(e)))
-			return false;
+    private static boolean checkPalindrome(String str, int s, int e) {
 
-		// If there are more than two characters, check if
-		// middle substring is also palindrome or not.
-		if (s < e + 1)
-			return isPalRec(str, s + 1, e - 1);
+        // reach the same character
+        if(s == e) return true;
 
-		return true;
-	}
+        // base case
+        if (str.charAt(s) != str.charAt(e)) return true;
+        
+        // advance to start+1 and end-1
+        if (s < e + 1) {
+            return checkPalindrome(str, s + 1, e - 1);
+        }
 
-	static boolean isPalindrome(String str) {
-		int n = str.length();
-
-		// An empty string is considered as palindrome
-		if (n == 0)
-			return true;
-		return isPalRec(str, 0, n - 1);
-	}
-
-	// Driver Code
-	public static void main(String[] args) {
-		String str = "geeg";
-
-		if (isPalindrome(str))
-			System.out.println("Yes");
-		else
-			System.out.println("No");
-	}
+        return true;
+    }
 }
 ```
 {% endtab %}
@@ -279,7 +307,9 @@ class Solution {
 }
 ```
 
-### S**um of digit of a number using recursion**
+### S**um of digit of a number**&#x20;
+
+**using recursion**
 
 {% tabs %}
 {% tab title="Java" %}
@@ -337,7 +367,7 @@ class Solution {
 {% endtab %}
 {% endtabs %}
 
-### Program to print all subsets of a set given as string
+### All subsets of string
 
 **Important**
 
@@ -379,7 +409,7 @@ class Soltution {
 {% endtab %}
 {% endtabs %}
 
-### Print all permutation of String
+### All permutation of String
 
 **Important**
 
