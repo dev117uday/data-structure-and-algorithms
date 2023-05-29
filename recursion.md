@@ -33,38 +33,38 @@ When last statement is recursion, it is tail recursion, which is optimized by co
 ### 1 to N and N to 1
 
 ```java
-class App {
+
+class Solution {
     public static void main(String[] args) {
         System.out.println("--- start ---");
-        
+
         print1ToN(9);
         System.out.println();
         printNTo1(9);
-        
+
         System.out.println("\n--- end ---");
     }
 
     private static void printNTo1(int i) {
-        if(i==0) {
+        if (i == 0) {
             return;
         }
-        System.out.print(i+"|");
-        printNTo1(i-1);
+        System.out.print(i + "|");
+        printNTo1(i - 1);
     }
 
     private static void print1ToN(int i) {
-        if(i==0) {
+        if (i == 0) {
             return;
         }
-        print1ToN(i-1);
-        System.out.print(i+"|");
+        print1ToN(i - 1);
+        System.out.print(i + "|");
     }
 }
+
 ```
 
 ### Tower of Hanoi
-
-**Important**
 
 Tower of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:
 
@@ -108,75 +108,73 @@ Output : Disk 1 moved from A to C
          Disk 1 moved from A to C
 ```
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
-class Program
-{
+
+class Program {
     static void towerOfHanoi(int n, char from_rod,
-                        char to_rod, char aux_rod) 
-    { 
-        if (n == 1) 
-        { 
+            char to_rod, char aux_rod) {
+        if (n == 1) {
             System.out.println(
-                "Move disk 1 from rod "+ 
-                from_rod+" to rod "+to_rod); 
-            return; 
-        } 
-        
-        towerOfHanoi(n - 1, from_rod, aux_rod, to_rod); 
-        
+                    "Move disk 1 from rod " +
+                            from_rod + " to rod " + to_rod);
+            return;
+        }
+
+        towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
+
         System.out.println(
-            "Move disk "+ n + " from rod " + 
-            from_rod +" to rod " + to_rod ); 
-            
-        towerOfHanoi(n - 1, aux_rod, to_rod, from_rod); 
-    } 
+                "Move disk " + n + " from rod " +
+                        from_rod + " to rod " + to_rod);
 
-    public static void  main ( String[] args ) 
-    { 
-        int n = 4; // Number of disks 
-        towerOfHanoi(n, 'A', 'C', 'B'); 
-        // A, B and C are names of rods 
-    } 
+        towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+    }
+
+    public static void main(String[] args) {
+        int n = 4; // Number of disks
+        towerOfHanoi(n, 'A', 'C', 'B');
+        // A, B and C are names of rods
+    }
 }
-```
-{% endtab %}
-{% endtabs %}
 
-### Fibonacci
+```
+
+### Fibonacci (Recursion)
 
 ```java
-class Solution {
-	static public int fib(int n) {
-		if (n <= 1)
-		  return n;
-		return fib(n - 1) + fib(n - 2);
-	  }
 
-	public static void main(String[] args) {
-		System.out.println(fib(5));
-	}
+class Solution {
+    static public int fib(int n) {
+        if (n <= 1)
+            return n;
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(fib(5));
+    }
 }
+
 ```
 
 ### Count Total Digits
 
 ```java
-class Solution {
-	public static int countDigits(int n) {
-		if (n < 10) {
-		  return 1;
-		}
-	  
-		// triming one digit in recursive call
-		return 1 + countDigits(n / 10);
-	  }
 
-	public static void main(String[] args) {
-		System.out.println(countDigits(10121));
-	}
+class Solution {
+    public static int countDigits(int n) {
+        if (n < 10) {
+            return 1;
+        }
+
+        // triming one digit in recursive call
+        return 1 + countDigits(n / 10);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(countDigits(10121));
+    }
 }
+
 ```
 
 ### Sum of Digits
@@ -201,8 +199,6 @@ class Solution {
 
 ### Is string palindrome
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class App {
     public static void main(String[] args) {
@@ -230,17 +226,11 @@ class App {
 
         return true;
     }
-}
+}kjava
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Josephus problem
 
-**Important**
-
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 
@@ -260,8 +250,6 @@ class Solution {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Power Using Recursion
 
@@ -309,35 +297,32 @@ class Solution {
 
 ### S**um of digit of a number**&#x20;
 
-**using recursion**
+using recursion
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
-class Solution {
-	static int sum_of_digit(int n) {
-		if (n == 0)
-			return 0;
-		return (n % 10 + sum_of_digit(n / 10));
-	}
 
-	public static void main(String[] args) {
-		int num = 12345;
-		int result = sum_of_digit(num);
-		System.out.println("Sum of digits is " + result);
-	}
+class Solution {
+    static int sum_of_digit(int n) {
+        if (n == 0)
+            return 0;
+        return (n % 10 + sum_of_digit(n / 10));
+    }
+
+    public static void main(String[] args) {
+        int num = 12345;
+        int result = sum_of_digit(num);
+        System.out.println("Sum of digits is " + result);
+    }
 }
+j
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Rod cutting
 
 Important : Inputs should be sort
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
+
 class Solution {
 	static int rodCutting(int n, int a, int b, int c) {
 		if (n == 0)
@@ -363,55 +348,46 @@ class Solution {
 
 	}
 }
+
 ```
-{% endtab %}
-{% endtabs %}
 
 ### All subsets of string
 
-**Important**
-
-{% tabs %}
-{% tab title="Java" %}
 ```java
+
 class Soltution {
 
-	// str : Stores input string
-	// curr : Stores current subset
-	// index : Index in current subset, curr
-	static void powerSet(String str, int index, String curr) {
-		int n = str.length();
+    // str : Stores input string
+    // curr : Stores current subset
+    // index : Index in current subset, curr
+    static void powerSet(String str, int index, String curr) {
+        int n = str.length();
 
-		// base case
-		if (index == n) {
-			System.out.println(curr);
-			return;
-		}
+        // base case
+        if (index == n) {
+            System.out.println(curr);
+            return;
+        }
 
-		// Two cases for every character
-		// (i) We consider the character
-		// as part of current subset
-		// (ii) We do not consider current
-		// character as part of current subset
-		powerSet(str, index + 1, curr + str.charAt(index));
-		powerSet(str, index + 1, curr);
-	}
+        // Two cases for every character
+        // (i) We consider the character
+        // as part of current subset
+        // (ii) We do not consider current
+        // character as part of current subset
+        powerSet(str, index + 1, curr + str.charAt(index));
+        powerSet(str, index + 1, curr);
+    }
 
-	public static void main(String[] args) {
-		String str = "abc", curr = "";
-		int index = 0;
-		powerSet(str, index, curr);
-	}
+    public static void main(String[] args) {
+        String str = "abc", curr = "";
+        int index = 0;
+        powerSet(str, index, curr);
+    }
 }
+
 ```
 
-
-{% endtab %}
-{% endtabs %}
-
-### All permutation of String
-
-**Important**
+### All permutation of String&#x20;
 
 ```java
 import java.util.ArrayList;
