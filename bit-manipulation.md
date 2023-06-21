@@ -6,8 +6,6 @@ description: on/off
 
 ### Check if the kth bit is set or not
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 // To check if  
 // k-th bit of a given number  
@@ -29,15 +27,11 @@ class Program {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Check If The Number is Odd or Even
 
 **Important**
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 //  "&" operator
 // [ 1 & 1 = 1 ]  [1 & 0 = 0]
@@ -63,15 +57,11 @@ class Program {
 }
 
 ```
-{% endtab %}
-{% endtabs %}
 
 ### To swap two numbers
 
 **Important**
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Program {
     public static void main(String[] args) {
@@ -88,15 +78,11 @@ class Program {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Check if a number is a power of 2
 
 **Important**
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 // Program to efficiently  
 // check for power for 2 
@@ -121,13 +107,9 @@ class Program
     } 
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Find The Number Occurring only once rest Occurring k times
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 
 class Program {
@@ -156,15 +138,11 @@ class Program {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Count set bits
 
 **Important**
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 // Program to Count set  
 // bits in an integer  
@@ -193,13 +171,9 @@ class countSetBits
     } 
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### To Count Set Bits in First N natural numbers
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Program {
 
@@ -233,13 +207,9 @@ class Program {
 
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Find the Number Occurring Odd Number of Times
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 //Java program to find the element
 // occurring odd number of times 
@@ -263,13 +233,9 @@ class Program {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Longest substring with count of 1s more than 0s
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 // Java program to find largest substring 
 // having count of 1s more than count 
@@ -346,13 +312,9 @@ class Program
     } 
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Generate power set
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 // Java program for power set 
 
@@ -393,5 +355,3 @@ class Program {
     } 
 }
 ```
-{% endtab %}
-{% endtabs %}

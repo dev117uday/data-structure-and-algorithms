@@ -207,8 +207,6 @@ class Solution {
 
 ### Boundary traversal of matrix
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 
 class Solution {
@@ -241,13 +239,9 @@ class Solution {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Spirally traversing of matrix
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 
 class Solution {
@@ -308,8 +302,6 @@ class Solution {
 ```
 
 
-{% endtab %}
-{% endtabs %}
 
 ### Adding two matrices
 

@@ -999,8 +999,6 @@ class Solution {
 
 ### Reverse an array
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 
@@ -1033,15 +1031,11 @@ class Solution {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Rotate an array by number by D
 
 link : [https://leetcode.com/problems/rotate-array/](https://leetcode.com/problems/rotate-array/)
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 	public void rotate(int[] nums, int k) {
@@ -1064,15 +1058,11 @@ class Solution {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Replace Elements with Greatest Element on Right Side
 
 link : [https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 import java.util.Arrays;
 
@@ -1095,16 +1085,12 @@ class Solution {
     }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Prefix Sum array
 
 * input   : 10, 4, 16, 20
 * output : 10 14 30 50
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 	// Fills prefix sum array
@@ -1131,15 +1117,11 @@ class Solution {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Find Pivot Index or Equilibrium Point
 
 [https://leetcode.com/problems/find-pivot-index/](https://leetcode.com/problems/find-pivot-index/)
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 	public int pivotIndex(int[] nums) {
@@ -1162,8 +1144,6 @@ class Solution {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Maximum occurred integer in N ranges\*
 
@@ -1172,8 +1152,6 @@ Here `L[i]` and `R[i]` present ranges : 1- 15, 4-8, 9-12 etc...
 * mark the starting of the range with 1 and ending with -1 on the next element after the range ends, do this for all ranges
 * find the prefix sum array for the array and find the max element, the index will the be most occur ed integer in N ranges
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 
@@ -1220,8 +1198,6 @@ class Solution {
 ```
 
 
-{% endtab %}
-{% endtabs %}
 
 ### Strongest Neighbour | Find Peak Element
 
@@ -1498,8 +1474,6 @@ class Solution {
 
 link : [https://leetcode.com/problems/trapping-rain-water/](https://leetcode.com/problems/trapping-rain-water/)
 
-{% tabs %}
-{% tab title="Java" %}
 ```java
 class Solution {
 	public int trap(int[] height) {
@@ -1530,8 +1504,6 @@ class Solution {
 	}
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Best Time to Buy and Sell Stock
 
