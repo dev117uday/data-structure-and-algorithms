@@ -12,7 +12,7 @@ description: only thing that matters in OA
 
 ### Topics
 
-* [Math & Logic](math-and-logic.md)
+* [Math & Logic](broken-reference)
 * [Recursion](recursion.md)
 * [Bit Manipulation](bit-manipulation.md)
 * [Arrays](arrays.md)
