@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Data Structures and Algo](README.md)
+* [Introduction](introduction.md)
 * [Mathematics](mathematics.md)
 * [Recursion](recursion.md)
 * [Bit Manipulation](bit-manipulation.md)
