@@ -12,10 +12,12 @@ description: only thing that matters in OA
 
 ### Topics
 
-* [Math & Logic](broken-reference)
+* [Introduction](introduction.md)
+* [Mathematics](mathematics.md)
 * [Recursion](recursion.md)
 * [Bit Manipulation](bit-manipulation.md)
 * [Arrays](arrays.md)
+* [Sorting](sorting.md)
 * [Matrix](matrix.md)
 * [Strings](strings.md)
 * [LinkedList](linkedlist.md)
