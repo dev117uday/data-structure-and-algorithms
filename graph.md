@@ -1,3 +1,18 @@
+---
+description: why is everything is connected ?
+layout:
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: false
+---
+
 # Graph
 
 ## Directed vs UnDirected Graph
@@ -17,22 +32,56 @@
 
 ## Concepts on graph
 
-* Walk ( or Path ) : connection between connected edges
-* Path ( or Simple Path ) : a walk without repeation
+* Walk (sometimes path) : from going one edge to another via connected edges
+  * v1 -> v2 -> v4 -> v2&#x20;
+  * if no edge exists between 2 vertices, you cannot walk directly
+* Path (simple path) : a walk without repeated vertices allowed
+* Degree : all edges to vertices
+  * in-degree : directed graph incoming edges
+  * out-degree : directed graph outgoing edges
+* Cyclic : if the walk starts and ends on the same vertices
+  * they can directed and undirected
+* Acyclic : &#x20;
+  * Undirected acyclic graph (UDAG)
+  * Directed acyclic graph (DAG)
+* Weighted graph : edges with some weight assigned to it
+  * unweighted graph : simple edges
 
-## Adjaceny Matrix vs List
+## Adjacency Matrix vs List
 
-![](broken-reference)
+#### Adjacency Matrix
 
-![](broken-reference)
+<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption><p>adjacency matrix : undirected graph</p></figcaption></figure>
 
-![](broken-reference)
+* If the diagonal of matrix is 0 and **upper and lower triangle are symmetric**, **then it is a undirected graph**
+* size of matrix = |v|x|v|
+* **If graph is not symmetric , then it is a directed graph**
 
-![](broken-reference)
+<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption><p>adjacency matrix : directed graph</p></figcaption></figure>
 
-## DFS vs BFS
+* space required : |v|x|v|
+* check if u & v are adj : O(1)
+* find all vertices : O(v) : simple matrix row traversal
+* adding/removing edges : O(1)
 
-### Applications of Breadth First Search
+#### Adjacency Matrix List
+
+<figure><img src=".gitbook/assets/image (9).png" alt="" width="563"><figcaption><p>adjacency list undirected graph</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (11).png" alt=""><figcaption><p>adjacency list directed graph</p></figcaption></figure>
+
+* space required : O(V+E)
+  * undirected : V+2E
+  * directed : V+E
+* check if there is a edge from u to v : O(v)
+* find all adjacency of u : O(degree(u))
+* Find degree of u : O(1)
+* Add an edge : O(1)
+* remove and edge : O(v)
+
+## Applications of DFS vs BFS
+
+#### Applications of Breadth First Search
 
 * Shortest Path in unweighted graph
 * Crawler in Search Engine
@@ -43,7 +92,7 @@
 * Ford Fulkerson Algorithm
 * Broadcasting
 
-### Applications of Depth First Search
+#### Applications of Depth First Search
 
 * Cycle Detection
 * Topological Sorting
@@ -79,73 +128,32 @@ class Graph {
             adj.add(new ArrayList<Integer>());
 
         // Adding edges one by one
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 1, 2);
-        addEdge(adj, 1, 3);
+        addEdge(adj, 0, 1); addEdge(adj, 0, 2);
+        addEdge(adj, 1, 2); addEdge(adj, 1, 3);
 
         printGraph(adj);
     }
 }
 ```
 
-## BFS Traversal of graph
+## Breadth First Search Graph Traversal
 
-```java
-import java.util.*;
+#### How it works
 
-class Graph {
+* create a queue to maintain elements for breadth first search
+* to avoid repeating the visited nodes in cyclic graph, create a **boolean** array of size |v| to mark array\[**i**] as true/false indicating visited status
+* **CODE FOR BFS disconnected graph is same**&#x20;
 
-    static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
-        adj.get(u).add(v);
-        adj.get(v).add(u);
-    }
+#### Disconnected Graph:  How it works&#x20;
 
-    static void BFS(ArrayList<ArrayList<Integer>> adj, int V, int s) {
-        boolean[] visited = new boolean[V];
-        for (int i = 0; i < V; i++)
-            visited[i] = false;
+* same as BFS, the algorithm is called for every node assuming it is the source vertice of the disconnected graph.
+* we keep track of visited vertices in an boolean array just like BFS but this visited array is passed from source caller to BFS algorithm (in Java : array is pass by reference)
+* this visited array will avoid calling BFS for nodes of island as they would have been visited&#x20;
 
-        Queue<Integer> q = new LinkedList<>();
+#### To count the number of island in graph
 
-        visited[s] = true;
-        q.add(s);
-
-        while (q.isEmpty() == false) {
-            int u = q.poll();
-            System.out.print(u + " ");
-
-            for (int v : adj.get(u)) {
-                if (visited[v] == false) {
-                    visited[v] = true;
-                    q.add(v);
-                }
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        int V = 5;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>(V);
-
-        for (int i = 0; i < V; i++)
-            adj.add(new ArrayList<Integer>());
-
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 1, 2);
-        addEdge(adj, 2, 3);
-        addEdge(adj, 1, 3);
-        addEdge(adj, 3, 4);
-        addEdge(adj, 2, 4);
-
-        System.out.println("Following is Breadth First Traversal: ");
-        BFS(adj, V, 0);
-    }
-}
-```
-
-## BFS on disconnected graphs
+* keep track of island source with counter
+  * every islands nodes will be ignored as they will be marked as visited by BFS
 
 ```java
 import java.util.*;
@@ -178,11 +186,15 @@ class Graph {
 
     static void BFSDin(ArrayList<ArrayList<Integer>> adj, int V) {
         boolean[] visited = new boolean[V];
+        int count = 0;        // for counting number of islands
         for (int i = 0; i < V; i++)
             visited[i] = false;
         for (int i = 0; i < V; i++) {
-            if (visited[i] == false)
+            if (visited[i] == false) {
                 BFS(adj, i, visited);
+                count++;    // every islands source will be counted, as
+                            // its nodes will be marked visited by BFS
+            }
         }
     }
 
@@ -193,149 +205,28 @@ class Graph {
         for (int i = 0; i < V; i++)
             adj.add(new ArrayList<Integer>());
 
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 2, 3);
-        addEdge(adj, 1, 3);
+        addEdge(adj, 0, 1); addEdge(adj, 5, 6); addEdge(adj, 4, 6);
+        addEdge(adj, 0, 2); addEdge(adj, 2, 3); addEdge(adj, 1, 3); 
         addEdge(adj, 4, 5);
-        addEdge(adj, 5, 6);
-        addEdge(adj, 4, 6);
-
+        
         System.out.println("Following is Breadth First Traversal: ");
         BFSDin(adj, V);
     }
 }
 ```
 
-## BFS : Print number of islands in a graph (or number of connected components in a graph)
-
-```java
-import java.util.*;
-
-class Graph {
-
-    static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
-        adj.get(u).add(v);
-        adj.get(v).add(u);
-    }
-
-    static void BFS(ArrayList<ArrayList<Integer>> adj, int s, boolean[] visited) {
-        Queue<Integer> q = new LinkedList<>();
-
-        visited[s] = true;
-        q.add(s);
-
-        while (q.isEmpty() == false) {
-            int u = q.poll();
-
-            for (int v : adj.get(u)) {
-                if (visited[v] == false) {
-                    visited[v] = true;
-                    q.add(v);
-                }
-            }
-        }
-    }
-
-    static int BFSDin(ArrayList<ArrayList<Integer>> adj, int V) {
-        boolean[] visited = new boolean[V];
-        int count = 0;
-        for (int i = 0; i < V; i++)
-            visited[i] = false;
-        for (int i = 0; i < V; i++) {
-            if (visited[i] == false) {
-                BFS(adj, i, visited);
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public static void main(String[] args) {
-        int V = 7;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>(V);
-
-        for (int i = 0; i < V; i++)
-            adj.add(new ArrayList<Integer>());
-
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 2, 3);
-        addEdge(adj, 1, 3);
-        addEdge(adj, 4, 5);
-        addEdge(adj, 5, 6);
-        addEdge(adj, 4, 6);
-
-        System.out.print("Number of islands: " + BFSDin(adj, V));
-    }
-}
-```
-
 ## Depth First Search
 
-```java
-import java.util.*;
+#### How it works
 
-class Graph {
+* Depth first search is achieved with recursion just like tree
+* To avoid cyclic loops, a boolean array containing visited nodes is maintain and passed in the recursion
 
-    static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
-        adj.get(u).add(v);
-        adj.get(v).add(u);
-    }
+#### Disconnected Graph:  How it works&#x20;
 
-    static void BFS(ArrayList<ArrayList<Integer>> adj, int s, boolean[] visited) {
-        Queue<Integer> q = new LinkedList<>();
-
-        visited[s] = true;
-        q.add(s);
-
-        while (q.isEmpty() == false) {
-            int u = q.poll();
-
-            for (int v : adj.get(u)) {
-                if (visited[v] == false) {
-                    visited[v] = true;
-                    q.add(v);
-                }
-            }
-        }
-    }
-
-    static int BFSDin(ArrayList<ArrayList<Integer>> adj, int V) {
-        boolean[] visited = new boolean[V];
-        int count = 0;
-        for (int i = 0; i < V; i++)
-            visited[i] = false;
-        for (int i = 0; i < V; i++) {
-            if (visited[i] == false) {
-                BFS(adj, i, visited);
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public static void main(String[] args) {
-        int V = 7;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>(V);
-
-        for (int i = 0; i < V; i++)
-            adj.add(new ArrayList<Integer>());
-
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 2, 3);
-        addEdge(adj, 1, 3);
-        addEdge(adj, 4, 5);
-        addEdge(adj, 5, 6);
-        addEdge(adj, 4, 6);
-
-        System.out.print("Number of islands: " + BFSDin(adj, V));
-    }
-}
-```
-
-## DFS for disconnected graphs
+* same as BFS, the algorithm is called for every node assuming it is the source vertice of the disconnected graph.
+* we keep track of visited vertices in an boolean array just like DFS but this visited array is present in recursion call from source caller to DFS algorithm (in Java : array is pass by reference)
+* this visited array will avoid calling DFS for nodes of island as they would have been visited&#x20;
 
 ```java
 import java.util.*;
@@ -359,12 +250,17 @@ class Graph {
 
     static void DFS(ArrayList<ArrayList<Integer>> adj, int V) {
         boolean[] visited = new boolean[V];
+        int count = 0;
+        
         for (int i = 0; i < V; i++)
             visited[i] = false;
 
+        // for include disconnected graphs as well
         for (int i = 0; i < V; i++) {
-            if (visited[i] == false)
+            if (visited[i] == false) {
                 DFSRec(adj, i, visited);
+                count++;
+            }
         }
     }
 
@@ -375,9 +271,7 @@ class Graph {
         for (int i = 0; i < V; i++)
             adj.add(new ArrayList<Integer>());
 
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 1, 2);
+        addEdge(adj, 0, 1); addEdge(adj, 0, 2); addEdge(adj, 1, 2);
         addEdge(adj, 3, 4);
 
         System.out.println("Following is Depth First Traversal for disconnected graphs: ");
@@ -386,58 +280,7 @@ class Graph {
 }
 ```
 
-## DFS : For finding connected components
-
-```java
-import java.util.*;
-
-class Graph {
-
-    static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
-        adj.get(u).add(v);
-        adj.get(v).add(u);
-    }
-
-    static void DFSRec(ArrayList<ArrayList<Integer>> adj, int s, boolean[] visited) {
-        visited[s] = true;
-
-        for (int u : adj.get(s)) {
-            if (visited[u] == false)
-                DFSRec(adj, u, visited);
-        }
-    }
-
-    static int DFS(ArrayList<ArrayList<Integer>> adj, int V) {
-        boolean[] visited = new boolean[V];
-        int count = 0;
-        for (int i = 0; i < V; i++)
-            visited[i] = false;
-
-        for (int i = 0; i < V; i++) {
-            if (visited[i] == false) {
-                DFSRec(adj, i, visited);
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public static void main(String[] args) {
-        int V = 5;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>(V);
-
-        for (int i = 0; i < V; i++)
-            adj.add(new ArrayList<Integer>());
-
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 1, 2);
-        addEdge(adj, 3, 4);
-
-        System.out.println("Number of connected components: " + DFS(adj, V));
-    }
-}
-```
+## ------------
 
 ## BFS : Shortest Path in an Unweighted Graph
 
