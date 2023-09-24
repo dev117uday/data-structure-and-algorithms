@@ -6,6 +6,8 @@ description: .sort()
 
 ### Selection Sort
 
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>selection sort </p></figcaption></figure>
+
 ```java
 class Solution {
     void sort(int arr[]) {
@@ -46,7 +48,55 @@ class Solution {
 }
 ```
 
+#### C programming
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+  int N = 20;
+  int arr[N];
+
+  for(int i=0; i<N; i++) {
+    arr[i] = rand()%100;
+  }
+
+  for(int i = 0; i<N; i++) {
+    printf("%d ", arr[i]);
+  }
+
+  printf("\n");
+
+  for(int i=0; i<N-1; i++) {
+    int minindex = i;
+
+    for(int j=i+1; j<N; j++) {
+      if(arr[j]<arr[minindex]) {
+        minindex = j;
+      }
+    }
+
+    int temp = arr[minindex];
+    arr[minindex] = arr[i];
+    arr[i] = temp;
+    
+  }
+
+    for(int i = 0; i<N; i++) {
+    printf("%d ", arr[i]);
+  }
+
+  printf("\n");
+  
+  
+}
+```
+
 ### Insertion Sort
+
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ```java
 class Solution {
@@ -85,6 +135,8 @@ class Solution {
     }
 }
 ```
+
+
 
 ### Quick Sort
 
@@ -219,6 +271,8 @@ class Solution {
 
 ### Bubble Sort
 
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 ```java
 class Solution {
     void bubbleSort(int arr[]) {
@@ -249,6 +303,40 @@ class Solution {
         System.out.println("Sorted array");
         ob.printArray(arr);
     }
+}
+```
+
+#### C Programming
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+  int N = 20;
+  int arr[N];
+
+  for (int i = 0; i < N; i++) {
+    arr[i] = rand() % 100;
+    printf("%d ", arr[i]);
+  }
+
+  printf("\n");
+
+  for (int i = 0; i < N - 1; i++) {
+    for (int j = 0; j < N - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        int temp = arr[j + 1];
+        arr[j + 1] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+
+  for (int i = 0; i < N; i++) {
+    printf("%d ", arr[i]);
+  }
 }
 ```
 

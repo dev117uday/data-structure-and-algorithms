@@ -34,7 +34,7 @@ If we use O notation to represent time complexity of Insertion sort, we have to 
 1. The worst case time complexity of Insertion Sort is O($n^2$).
 2. The best case time complexity of Insertion Sort is O(n). Note that O($n^2$) also covers linear time.
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ```
 O(g(n)) = {     f(n): there exist positive constants 
@@ -48,7 +48,7 @@ O(g(n)) = {     f(n): there exist positive constants
 
 Just as Big O notation provides an asymptotic upper bound on a function, _**Ω notation**_ provides an asymptotic lower bound.
 
-<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 Ω (g(n)) = {    f(n): there exist positive constants c and n0 
