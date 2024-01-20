@@ -17,19 +17,19 @@
 
 ### GCD or HCF
 
-```java
-class Solution {
+```cpp
+int gcd(int a, int b)
+{
+    if (a == 0)
+    {
+        return b;
+    }
+    return gcd(b % a, a);
+}
 
-    static int GCD(int a, int b) {
-		if (a == 0) {
-			return b;
-		}
-		return GCD(b % a, a);
-	}
-
-	public static void main(String[] args) {
-		System.out.println("GCD : " + GCD(28, 8));
-	}
+int main()
+{
+    cout << gcd(32, 24) << endl;
 }
 ```
 
@@ -37,103 +37,85 @@ class Solution {
 
 #### Number of Digits in a number ( iteratively )
 
-```java
-class Solution {
+```cpp
+int number = 123456;
+int len = 0;
 
-    public static void main(String[] args) {
-        int number = 123456;
-        int len = 0;
-
-        while (number > 0) {
-            number = number / 10;
-            len++;
-        }
-
-        System.out.println("Length : " + len);
-    }
+while (number > 0)
+{
+    number = number / 10;
+    len++;
 }
+
+cout << len << "\n";
 ```
 
 #### Number of Digits in a number ( recursively )
 
-```java
-class Solution {
-    public static int numOfDigits(int num) {
-        if (num == 0) {
-            return 0;
-        }
-
-        return numOfDigits(num / 10) + 1;
+```cpp
+int numOfDigits(int num)
+{
+    if (num == 0)
+    {
+        return 0;
     }
+    return numOfDigits(num / 10) + 1;
+}
 
-    public static void main(String[] args) {
-        int number = 123456;
-        System.out.println("Length : " + numOfDigits(number));
-    }
+int main()
+{
+    int number = 123456;
+    cout << numOfDigits(number);
 }
 ```
 
 #### Number of Digits in a number ( mathematically )
 
-```java
-class Solution {
-	public static void main(String[] args) {
-		int number = 12345;
-		System.out.println("Number : " + (int) (Math.log10(number) + 1));
-	}
-}
+```cpp
+int number = 1234561;
+cout << (int)(log10(number)+1);
 ```
 
 ### First N Prime
 
-```java
-class Solution {
+```cpp
+int number = 200;
 
-    // function to check if a given number is prime
-    static boolean isPrime(int n) {
-        // since 0 and 1 is not prime return false.
-        if (n == 1 || n == 0)
-            return false;
-
-        // Run a loop from 2 to n-1
-        for (int i = 2; i < n; i++) {
-            // if the number is divisible by i, then n is not a prime number.
-            if (n % i == 0)
-                return false;
-        }
-        // otherwise, n is prime number.
-        return true;
+for (int i = 0; i < number; i++)
+{
+    if (i == 0 || i == 1) {
+        continue;
     }
 
-    // Driver code
-    public static void main(String[] args) {
-        int N = 100;
-        // check for every number from 1 to N
-        for (int i = 1; i <= N; i++) {
-            // check if current number is prime
-            if (isPrime(i)) {
-                System.out.print(i + " ");
-            }
+    bool flag = 1;
+
+    for (int j = 2; j < sqrt(i); j++) {
+        if (i % j == 0) {
+            flag = 0;
         }
+    }
+
+    if (flag) {
+        cout << "Prime : " << i << "\n";
     }
 }
+
 ```
 
 ### Factorial of a number
 
-```java
-class Solution {
-
-    static int fact(int n) {
-        if(n == 0) {
-            return 1;
-        }
-        
-        return n*fact(n-1);
+```cpp
+int fact(int n)
+{
+    if (n == 0)
+    {
+        return 1;
     }
+    return n * fact(n - 1);
+}
 
-    public static void main(String[] args) {
-        System.out.println(fact(4));
-    }
+int main()
+{
+    cout << fact(7) << endl;
 }
 ```
