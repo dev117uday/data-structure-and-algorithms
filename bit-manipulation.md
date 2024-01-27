@@ -13,6 +13,10 @@ description: on/off
 * \~ : inverse
 * \>> : right shift | a>>1; divide by 2
 * << : left shift | a<<1; multiple by 2
+* bitwise OR is sum of 2 number&#x20;
+  * a = 5 (101) and b = 2 (010)&#x20;
+  * a|b = 111 which is 7 : if no carry is involved&#x20;
+  * is carry is there, then a|b + a\&b
 
 ### Divide and Multiply
 
@@ -88,3 +92,31 @@ while (num > 0)
 }
 cout &#x3C;&#x3C; "Count : " &#x3C;&#x3C; count &#x3C;&#x3C; endl;
 </code></pre>
+
+### Find the odd occuring element
+
+```cpp
+#include <stdio.h>
+ 
+// Function to return the only odd
+// occurring element
+int findOdd(int arr[], int n)
+{
+    int res = 0, i;
+    for (i = 0; i < n; i++)
+        res ^= arr[i];
+    return res;
+}
+ 
+int main(void)
+{
+    int arr[] = { 12, 12, 14, 90, 14, 14, 14 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf("The odd occurring element is %d ",
+           findOdd(arr, n));
+    return 0;
+}
+
+output :
+The odd occurring element is 90 
+```
