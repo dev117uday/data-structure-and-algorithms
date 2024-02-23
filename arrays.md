@@ -1,150 +1,12 @@
 # Arrays
 
-
-
 ### Left most index of an element
 
-**Important** : To find the left most occurrence of element in array
+* Count of occurrences of x in sorted element
+* Count of 1s in binary sorted array
 
-```java
-class Solution {
-	static int leftIndex(int arr[], int n, int x) {
-		int l = 0, h = n - 1;
-		int mid = 0;
-		while (l <= h) {
-			mid = l + (h - l) / 2;
-			if (arr[mid] == x && (mid == 0 || arr[mid - 1] != x))
-				return mid;
-			else if (arr[mid] >= x)
-				h = mid - 1;
-			else
-				l = mid + 1;
-		}
-		return -1;
-	}
-
-	public static void main(String[] args) {
-		int arr[] = new int[] { 2, 3, 3, 3, 3, 3 };
-		int n = arr.length;
-		int ele = 3;
-		System.out.println(leftIndex(arr, n, ele));
-	}
-}
-```
-
-### Count of occurrences of x in sorted element
-
-```java
-class Solution {
-	static int leftIndex(int arr[], int n, int x) {
-		int l = 0, h = n - 1;
-		int mid = 0;
-		while (l <= h) {
-			mid = l + (h - l) / 2;
-			if (arr[mid] == x && (mid == 0 || arr[mid - 1] != x))
-				return mid;
-			else if (arr[mid] >= x)
-				h = mid - 1;
-			else
-				l = mid + 1;
-		}
-		return -1;
-	}
-
-	static int rightIndex(int arr[], int n, int x) {
-		int l = 0, h = n - 1;
-		int mid = 0;
-		while (l <= h) {
-			mid = l + (h - l) / 2;
-			if (arr[mid] == x && (mid == n - 1 || arr[mid + 1] != x))
-				return mid;
-			else if (arr[mid] > x)
-				h = mid - 1;
-			else
-				l = mid + 1;
-		}
-		return -1;
-	}
-
-	public static void main(String[] args) {
-		int arr[] = new int[] { 2, 3, 4, 5, 5, 5, 6, 6 };
-		int n = arr.length;
-		int ele = 5;
-		int leftOccur = leftIndex(arr, n, ele);
-		int rightOccur = rightIndex(arr, n, ele);
-		System.out.println(rightOccur - leftOccur + 1);
-	}
-}
-```
-
-### Count of 1s in binary sorted array
-
-```java
-class Solution {
-	static int count1s(int arr[], int n) {
-		int l = 0, h = n - 1;
-		int mid = 0;
-		while (l <= h) {
-			mid = l + (h - l) / 2;
-			if (arr[mid] == 1 && (mid == 0 || arr[mid - 1] != 1))
-				return n - mid;
-			else if (arr[mid] == 0)
-				l = mid + 1;
-			else
-				h = mid - 1;
-		}
-		return 0;
-	}
-
-	public static void main(String[] args) {
-		int arr[] = { 0, 0, 0, 0, 1, 1, 1, 1, 1 };
-		int n = arr.length;
-		System.out.println(count1s(arr, n));
-	}
-}
-```
-
-### Peak element
-
-```java
-class Solution {
-    // A binary search based function that returns index of a peak element
-    
-    static int findPeakUtil(int arr[], int low, int high, int n) {
-        // Find index of middle element
-        int mid = low + (high - low) / 2; /* (low + high)/2 */
-        
-        // Compare middle element with its neighbours (if neighbours exist)
-        if ((mid == 0 || arr[mid - 1] <= arr[mid]) && (mid == n - 1 ||
-                arr[mid + 1] <= arr[mid]))
-            return mid;
-        
-            // If middle element is not peak and its left neighbor is
-        // greater than it,then left half must have a peak element
-        else if (mid > 0 && arr[mid - 1] > arr[mid])
-            return findPeakUtil(arr, low, (mid - 1), n);
-        
-        // If middle element is not peak and its right neighbor
-        // is greater than it, then right half must have a peak
-        // element
-        else
-            return findPeakUtil(arr, (mid + 1), high, n);
-    }
-
-    // A wrapper over recursive function findPeakUtil()
-    static int findPeak(int arr[], int n) {
-        return findPeakUtil(arr, 0, n - 1, n);
-    }
-
-    // Driver method
-    public static void main(String[] args) {
-        int arr[] = { 1, 3, 20, 4, 1, 0 };
-        int n = arr.length;
-        System.out.println("Index of a peak point is " +
-                findPeak(arr, n));
-    }
-}
-```
+1. Perform binary search to the left most element
+2. Perform the required operation from that side
 
 ### Find an element in infinite sized sorted array
 
@@ -199,41 +61,6 @@ class Solution {
             System.out.println("Element not found");
         else
             System.out.println("Element found at index " + ans);
-    }
-}
-```
-
-### Square root of an integer
-
-```java
-// A Java program to find floor(sqrt(x) 
-class Solution {
-    public static int floorSqrt(int x) {
-        // Base Cases
-        if (x == 0 || x == 1)
-            return x;
-        // Do Binary Search for floor(sqrt(x))
-        int start = 1, end = x, ans = 0;
-        while (start <= end) {
-            int mid = (start + end) / 2;
-            // If x is a perfect square
-            if (mid * mid == x)
-                return mid;
-            // Since we need floor, we update answer when mid*mid is
-            // smaller than x, and move closer to sqrt(x)
-            if (mid * mid < x) {
-                start = mid + 1;
-                ans = mid;
-            } else // If mid*mid is greater than x
-                end = mid - 1;
-        }
-        return ans;
-    }
-
-    // Driver Method
-    public static void main(String[] args) {
-        int x = 11;
-        System.out.println(floorSqrt(x));
     }
 }
 ```
@@ -369,8 +196,6 @@ class Solution {
     }
 }
 ```
-
-
 
 ### Contains Duplicate
 
@@ -1088,7 +913,7 @@ class Solution {
 
 ### Prefix Sum array
 
-* input   : 10, 4, 16, 20
+* input : 10, 4, 16, 20
 * output : 10 14 30 50
 
 ```java
@@ -1197,11 +1022,9 @@ class Solution {
 }
 ```
 
-
-
 ### Strongest Neighbour | Find Peak Element
 
-link :  [https://leetcode.com/problems/find-peak-element/](https://leetcode.com/problems/find-peak-element/)
+link : [https://leetcode.com/problems/find-peak-element/](https://leetcode.com/problems/find-peak-element/)
 
 ```java
 public class Solution {
@@ -1217,7 +1040,7 @@ public class Solution {
 
 ### First Missing Positive
 
-link  : [https://leetcode.com/problems/first-missing-positive/](https://leetcode.com/problems/first-missing-positive/)
+link : [https://leetcode.com/problems/first-missing-positive/](https://leetcode.com/problems/first-missing-positive/)
 
 ```java
 class Solution {
@@ -1304,8 +1127,6 @@ public class Solution {
 ### Rearrange the array
 
 Given an array **arr\[]** of size **N** where every element is in the range from **0 to n-1**. Rearrange the given array so that **arr\[i]** becomes **arr\[arr\[i]]**.
-
-
 
 ```java
 class Solution {
@@ -1469,7 +1290,7 @@ class Solution {
   * This will give the tallest bar on left till which it can hold water
 * Step 2 : Find the max of ( tallest bar to the `right` , itself )
   * This will give the tallest bar on right till which it can hold water
-* Step 3 : Find the sum  : `water += min (  left[i] , right[i] ) - arr[i]`
+* Step 3 : Find the sum : `water += min ( left[i] , right[i] ) - arr[i]`
   * This will give you the water captured in between the bars
 
 link : [https://leetcode.com/problems/trapping-rain-water/](https://leetcode.com/problems/trapping-rain-water/)
@@ -1782,4 +1603,3 @@ class Solution {
 }
 
 ```
-
