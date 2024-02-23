@@ -219,25 +219,22 @@ Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
 ```
 
-```java
-import java.util.HashSet;
-import java.util.Set;
-
+```cpp
 class Solution {
-	public boolean containsDuplicate(int[] nums) {
-
-		Set<Integer> set = new HashSet<>();
-		for (int ele : nums) {
-			if (set.contains(ele)) {
-				return true;
-			}
-
-			set.add(ele);
-		}
-
-		return false;
-	}
-}
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set<int> st;
+        bool flag = false;
+        for(int i: nums) {
+            if(st.find(i)==st.end()) {
+                st.insert(i);
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+};
 ```
 
 ### Maximum Subarray
@@ -307,31 +304,36 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 ```
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
 
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-     
-         if (nums.length == 2) {
-            return new int[] {0,1};
+        vector<int> ans;
+        if (nums.size() == 2)
+        {
+            ans.push_back(0); ans.push_back(1);
+            return ans;
         }
-        
-        Map<Integer,Integer> hmap = new HashMap<>();
-        hmap.put(nums[0],0);
-        
-        for(int i=1; i<nums.length; i++) {
-            if(hmap.containsKey(target - nums[i])) {
-                return new int[]{ hmap.get(target - nums[i]), i };
+
+        map<int, int> hmap;
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int temp = target - nums[i];
+            if (hmap.find(temp) != hmap.end())
+            {
+                ans.push_back(i);
+                ans.push_back(hmap[temp]);
+                return ans;
             }
-            hmap.put(nums[i],i);
+            hmap[nums[i]] = i;
         }
-    
-        return new int[]{0,0};
-        
-        
+
+        return ans;
     }
-}
+};
 ```
 
 ### Merge Sorted Array
@@ -354,12 +356,11 @@ The result of the merge is [1,2,2,3,5,6]
 
 ```java
 class Solution {
-	public void merge(int[] nums1, int m, int[] nums2, int n) {
-
-		int mainid = nums1.length - 1;
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+		int mainid = nums1.size() - 1;
 		int fend = m - 1;
 		int send = n - 1;
-
 		while (fend >= 0 && send >= 0) {
 			if (nums1[fend] > nums2[send]) {
 				nums1[mainid--] = nums1[fend--];
@@ -375,9 +376,8 @@ class Solution {
 		while (send >= 0) {
 			nums1[mainid--] = nums2[send--];
 		}
-
-	}
-}
+    }
+};
 ```
 
 ### Intersection of Two Arrays II
@@ -404,34 +404,27 @@ Explanation: [9,4] is also accepted.
 ```
 
 ```java
-import java.util.ArrayList;
-import java.util.HashMap;
-
 class Solution {
-	public int[] intersect(int[] nums1, int[] nums2) {
-		ArrayList<Integer> arr = new ArrayList<Integer>();
-		HashMap<Integer, Integer> map = new HashMap<>();
-		for (int i = 0; i < nums1.length; i++) {
-			if (map.containsKey(nums1[i])) {
-				int value = map.get(nums1[i]);
-				map.replace(nums1[i], value + 1);
-			} else {
-				map.put(nums1[i], 1);
-			}
-		}
-
-		for (int i = 0; i < nums2.length; i++) {
-			if (map.containsKey(nums2[i]) 
-				&& map.get(nums2[i]).intValue() > 0) {
-				arr.add(nums2[i]);
-				map.replace(nums2[i], 
-					map.get(nums2[i]).intValue() - 1);
-			}
-		}
-
-		return arr.stream().mapToInt(i -> i).toArray();
-	}
-}
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        int n=nums1.size();
+        int m=nums2.size();
+        vector<int> res;
+        unordered_map<int,int> map1;
+        unordered_map<int,int> map2;
+        for(int i=0;i<n;i++){
+            map1[nums1[i]]++;
+        }
+        for(int j=0;j<m;j++){
+            map2[nums2[j]]++;
+        }
+        for(auto& num : nums1){
+            if(map2[num]-->0){
+                res.push_back(num);
+            } 
+        } return res;
+    }
+};
 ```
 
 ### Best Time to Buy and Sell Stock
@@ -1581,25 +1574,24 @@ public class Solution {
 
 link : [https://leetcode.com/problems/maximum-gap/](https://leetcode.com/problems/maximum-gap/)
 
-```java
-class Solution {
-    public int maximumGap(int[] nums) {
-        
-        if(nums.length < 2)
-            return 0;
-        
-        if(nums.length == 2)
-            return Math.abs(nums[0] - nums[1]);
-        
-        Arrays.sort(nums);
-        
-        int maxDiff = Integer.MIN_VALUE;
-        
-        for(int i = 0; i < nums.length - 1; i++)
-            maxDiff = Math.max((nums[i+1] - nums[i]), maxDiff);
-        
-        return maxDiff;
-    }
-}
+```cpp
+class Solution
+{
+public:
+	int maxSubArray(vector<int> &nums)
+	{
+		int maxsum = -99990;
+		int maxcalc = 0;
+		for (int ele : nums)
+		{
+			maxcalc = maxcalc + ele;
+			if (maxsum < maxcalc)
+				maxsum = maxcalc;
 
+			if (maxcalc < 0)
+				maxcalc = 0;
+		}
+		return maxsum;
+	}
+};
 ```
